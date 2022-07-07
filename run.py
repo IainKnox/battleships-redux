@@ -52,7 +52,15 @@ def random_col(board):
 
     return randint(0, len(board[0]) - 1)
 
-
+# assign the random x,y values to the ship row and column
+# to generate a random 1x1 ship.
 ship_row = random_row(board)
 ship_col = random_col(board)
+# print out the ship for debugging.
 print(f"x is {ship_col}, and y is {ship_row}")
+
+# ask the user choose which row(x) and column(y)
+# to fire a missle at.
+guess_row = int(input("Which row would you like to fire on: "))
+sleep(1)    # create a pause before asking for next co-ordinate
+guess_col = int(input("Which column would you like to fire on: "))
