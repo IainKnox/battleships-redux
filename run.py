@@ -64,3 +64,16 @@ print(f"x is {ship_col}, and y is {ship_row}")
 guess_row = int(input("Which row would you like to fire on: "))
 sleep(1)    # create a pause before asking for next co-ordinate
 guess_col = int(input("Which column would you like to fire on: "))
+
+# test to see whether the guess was a hit or miss.
+if guess_row == ship_row and guess_col == ship_col:
+    guess_row = "H"
+    guess_col = "H"
+    print("You sank my Battleship!")
+elif guess_row == ship_row or guess_col == ship_col:
+    print("You hit my Battleship!")
+else:
+    guess_col = "X"
+    guess_row = "X"
+    print("You missed my Battleship!")
+    print_board(board)
