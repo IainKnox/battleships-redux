@@ -59,20 +59,29 @@ ship_col = random_col(board)
 # print out the ship for debugging.
 print(f"x is {ship_col}, and y is {ship_row}")
 
-# ask the user choose which row(x) and column(y)
-# to fire a missle at.
-guess_row = int(input("Which row would you like to fire on: "))
-sleep(1)    # create a pause before asking for next co-ordinate
-guess_col = int(input("Which column would you like to fire on: "))
+# create a for loop so as to give a user a predefined
+# number of turns to guess where the ship is.
+for turn in range(1,5):   # this will give our game 6 turns
 
-# test to see whether the guess was a hit or miss.
-if guess_row == ship_row and guess_col == ship_col:
-    guess_row = "H"
-    guess_col = "H"
-    print("You sank my Battleship!")
-elif guess_row == ship_row or guess_col == ship_col:
-    print("You hit my Battleship!")
-else:
-    print("You missed my Battleship!")
-    board[guess_col][guess_row] = "X"   # add a miss to the board
-    print_board(board)
+    # ask the user choose which row(x) and column(y)
+    # to fire a missle at.
+    guess_row = int(input("Which row would you like to fire on: "))
+    sleep(0.5)    # create a pause before asking for next co-ordinate
+    guess_col = int(input("Which column would you like to fire on: "))
+
+    # test to see whether the guess was a hit or miss.
+    if guess_row == ship_row and guess_col == ship_col:
+        print("You sank my Battleship!")
+        break # if the ship is  sunk, the game ends
+    elif guess_row == ship_row or guess_col == ship_col:
+        print("You hit my Battleship!")
+        board[guess_col][guess_row] = "H"   # add a hit to the board
+        print_board(board)
+    else:
+        print("You missed my Battleship!")
+        board[guess_col][guess_row] = "X"   # add a miss to the board
+        print(f"Turn {turn}")
+        turn += 1
+        print_board(board)
+        if turn == 4:
+            print("Game Over")
