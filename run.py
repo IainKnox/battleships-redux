@@ -17,7 +17,7 @@ from time import sleep
 # start by defining a 10 x 10 game board
 board = []
 
-for num in range(0,10):
+for num in range(0, 10):
     board.append(["O"] * 10)
     # the "O" represents a space on the board multiplied
     # by a predetermined board size, in this case 10.
@@ -52,6 +52,7 @@ def random_col(board):
 
     return randint(0, len(board[0]) - 1)
 
+
 # assign the random x,y values to the ship row and column
 # to generate a random 1x1 ship.
 ship_row = random_row(board)
@@ -61,7 +62,8 @@ print(f"x is {ship_col}, and y is {ship_row}")
 
 # create a for loop so as to give a user a predefined
 # number of turns to guess where the ship is.
-for turn in range(1,5):   # this will give our game 6 turns
+turns = range(1, 5)    # create a variable to define number of turns
+for turn in turns:   # this will iterate over the turns
 
     # ask the user choose which row(x) and column(y)
     # to fire a missle at.
@@ -72,10 +74,17 @@ for turn in range(1,5):   # this will give our game 6 turns
     # test to see whether the guess was a hit or miss.
     if guess_row == ship_row and guess_col == ship_col:
         print("You sank my Battleship!")
-        break # if the ship is  sunk, the game ends
+        break   # if the ship is  sunk, the game ends
     elif guess_row == ship_row or guess_col == ship_col:
         print("You hit my Battleship!")
         board[guess_col][guess_row] = "H"   # add a hit to the board
+        print(f"Turn {turn}")
+        turn += 1
+        print_board(board)
+    elif board[guess_col][guess_row] == "X":     # check for duplicate coords
+        print("You have already fired on that spot!")
+        print(f"Turn {turn}")
+        turn += 1
         print_board(board)
     else:
         print("You missed my Battleship!")
@@ -83,5 +92,5 @@ for turn in range(1,5):   # this will give our game 6 turns
         print(f"Turn {turn}")
         turn += 1
         print_board(board)
-        if turn == 4:
+        if turn == turns:   # if maximum number of guesses reached, game ends.
             print("Game Over")
