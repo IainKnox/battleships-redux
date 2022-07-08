@@ -75,6 +75,12 @@ for turn in turns:   # this will iterate over the turns
     if guess_row == ship_row and guess_col == ship_col:
         print("You sank my Battleship!")
         break   # if the ship is  sunk, the game ends
+    elif board[guess_row][guess_col] == "X" or \
+board[guess_row][guess_col] == "H":     # check for duplicate coords
+        print("You have already fired on that spot!")
+        print(f"Turn {turn}")
+        turn += 1
+        print_board(board)
     elif guess_row == ship_row or guess_col == ship_col:
         print("You hit my Battleship!")
         board[guess_row][guess_col] = "H"   # add a hit to the board
@@ -84,11 +90,12 @@ for turn in turns:   # this will iterate over the turns
         print(f"Turn {turn}")
         turn += 1
         print_board(board)
-    elif board[guess_row][guess_col] == "X":     # check for duplicate coords
-        print("You have already fired on that spot!")
-        print(f"Turn {turn}")
-        turn += 1
-        print_board(board)
+#     elif board[guess_row][guess_col] == "X" or \
+# board[guess_row][guess_col] == "H":     # check for duplicate coords
+#         print("You have already fired on that spot!")
+#         print(f"Turn {turn}")
+#         turn += 1
+#         print_board(board)
     else:
         print("You missed my Battleship!")
         board[guess_row][guess_col] = "X"   # add a miss to the board
