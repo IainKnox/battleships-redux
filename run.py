@@ -84,7 +84,7 @@ for turn in turns:   # this will iterate over the turns
     elif guess_row == ship_row or guess_col == ship_col:
         print("You hit my Battleship!")
         board[guess_row][guess_col] = "H"   # add a hit to the board
-        if board[guess_row][guess_col] == ship_row and ship_col:
+        if guess_row == ship_row and guess_col == ship_col:
             print("You sank my Battleship!")
             break
         print(f"Turn {turn}")
