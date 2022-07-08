@@ -73,7 +73,6 @@ if guess_row == ship_row and guess_col == ship_col:
 elif guess_row == ship_row or guess_col == ship_col:
     print("You hit my Battleship!")
 else:
-    guess_col = "X"
-    guess_row = "X"
     print("You missed my Battleship!")
+    board[guess_col][guess_row] = "X"   # add a miss to the board
     print_board(board)
